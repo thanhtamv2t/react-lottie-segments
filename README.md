@@ -4,17 +4,13 @@
 This is a fork of [grzegorz-s/react-lottie](https://github.com/grzegorz-s/react-lottie), which is itself forked from [chenqingspring/react-lottie](https://github.com/chenqingspring/react-lottie)
 
 ## Differences
-This fork is a work in progress. The goal is to expand the wrapper to handle a larger set of the [lottie-web](https://github.com/airbnb/lottie-web) API. For example:
+This fork is a work in progress. The goal is to expand the wrapper to handle a larger set of the [lottie-web](https://github.com/airbnb/lottie-web) API. 
 
-***
-### setDirection(direction)
-- `direction`: 1 is forward, -1 is reverse.
+Newly implemented features:
 
-***
-### playSegments(segments, forceFlag)
-- `segments`: array. Can contain 2 numeric values that will be used as first and last frame of the animation. Or can contain a sequence of arrays each with 2 numeric values.
-- `forceFlag`: boolean. If set to false, it will wait until the current segment is complete. If true, it will update values immediately.
-***
+- goToAndPlay
+- goToAndStop
+- playSegments
 
 ## Demo
 Not currently available for this instance.
@@ -133,15 +129,90 @@ eventListeners=[
 ```
 
 ***
-### goToAndStop(value, isFrame)
+### goToAndStop({value, isFrame})
 - `value`: numeric value.
 - `isFrame`: defines if first argument is a time based value or a frame based (default false).
-
+> NOTE: This effectively jumps to the indicated position and pauses the video on that frame or timestamp. Since the signature is the same, please see goToAndPlay for example usage.
 ***
-### goToAndPlay(value, isFrame)
+### goToAndPlay({value, isFrame})
 - `value`: numeric value.
 - `isFrame`: defines if first argument is a time based value or a frame based (default false).
 
+*Example*
+``` javascript
+  const startPoint = {
+    value: 80,
+    isFrame: true
+  };
+
+  return (
+    <div data-component="LottieContainer" className={styles.outer}>
+      <Lottie
+        options={defaultOptions}
+        height="auto"
+        width="100vw"
+        isStopped={isStopped}
+        isPaused={isPaused}
+        goToAndPlay={startPoint}
+      />
+      <button
+        style={buttonStyle}
+        type="button"
+        onClick={() => setIsStopped(!isStopped)}
+      >
+        {isStopped ? 'play' : 'stop'}
+      </button>
+      <button
+        type="button"
+        style={buttonStyle}
+        onClick={() => setIsPaused(!isPaused)}
+      >
+        {isPaused ? 'unpause' : 'pause'}
+      </button>
+    </div>
+  );
+};
+```
+
+> NOTES: Jumps to the indicated frame or time and plays. If 'Loop' is set in options, it will replay the whole animation from the beginning once it reaches the end.
+***
+### playSegments({segments, forceFlag})
+- `segments`: array. Can contain 2 numeric values that will be used as first and last frame of the animation. Or can contain a sequence of arrays each with 2 numeric values.
+- `forceFlag`: boolean. If set to false, it will wait until the current segment is complete. If true, it will update values immediately.
+
+*Example*
+``` javascript
+  const sequence = {
+    segments: [0, 80],
+    forceFlag: true
+  }
+  return (
+    <div data-component="LottieContainer" className={styles.outer}>
+      <Lottie
+        options={defaultOptions}
+        height="auto"
+        width="100vw"
+        isStopped={isStopped}
+        isPaused={isPaused}
+        playSegments={sequence}
+      />
+      <button
+        style={buttonStyle}
+        type="button"
+        onClick={() => setIsStopped(!isStopped)}
+      >
+        {isStopped ? 'play' : 'stop'}
+      </button>
+      <button
+        type="button"
+        style={buttonStyle}
+        onClick={() => setIsPaused(!isPaused)}
+      >
+        {isPaused ? 'unpause' : 'pause'}
+      </button>
+    </div>
+  );
+  
 ***
 
 ## Related Projects

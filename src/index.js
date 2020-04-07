@@ -6,6 +6,9 @@ export default class Lottie extends React.Component {
   componentDidMount() {
     const {
       options,
+      playSegments,
+      goToAndPlay,
+      goToAndStop,
       eventListeners,
     } = this.props;
 
@@ -14,9 +17,6 @@ export default class Lottie extends React.Component {
       autoplay,
       animationData,
       rendererSettings,
-      segments,
-      goToAndPlay,
-      goToAndStop,
     } = options;
 
     this.options = {
@@ -24,16 +24,24 @@ export default class Lottie extends React.Component {
       renderer: 'svg',
       loop: loop !== false,
       autoplay: autoplay !== false,
-      segments: segments !== false,
-      goToAndPlay,
-      goToAndStop,
+      playSegments: playSegments.segments !== null,
+      goToAndPlay: goToAndPlay.value !== null,
+      goToAndStop: goToAndStop.value !== null,
       animationData,
       rendererSettings,
     };
 
     this.options = { ...this.options, ...options };
-
     this.anim = lottie.loadAnimation(this.options);
+
+    // Immediately handle goTo's if necessary.
+    if (goToAndPlay) {
+      this.goToAndPlay();
+    } 
+    if (goToAndStop) {
+      this.goToAndStop();
+    }
+
     this.registerEvents(eventListeners);
   }
 
@@ -51,7 +59,7 @@ export default class Lottie extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.isStopped) {
       this.stop();
-    } else if (this.props.segments) {
+    } else if (this.options.playSegments) {
       this.playSegments();
     } else {
       this.play();
@@ -90,7 +98,8 @@ export default class Lottie extends React.Component {
   }
 
   playSegments() {
-    this.anim.playSegments(this.props.segments);
+    const { segments, forceFlag } = this.props.playSegments;
+    this.anim.playSegments(segments, forceFlag);
   }
 
   stop() {
@@ -208,7 +217,10 @@ Lottie.propTypes = {
     isFrame: PropTypes.bool,
   }),
   speed: PropTypes.number,
-  segments: PropTypes.arrayOf(PropTypes.number),
+  playSegments: PropTypes.shape({
+    segments: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number),PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))]),
+    forceFlag: PropTypes.bool,
+  }),
   direction: PropTypes.number,
   ariaRole: PropTypes.string,
   ariaLabel: PropTypes.string,
@@ -228,6 +240,10 @@ Lottie.defaultProps = {
   goToAndStop: {
     value: null,
     isFrame: false,
+  },
+  playSegments: {
+    segments: null,
+    forceFlag: false,
   },
   speed: 1,
   ariaRole: 'button',
