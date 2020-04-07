@@ -57,6 +57,8 @@
     "npm": "^6.13.7"
   },
   "keywords": [
+    "react-lottie",
+    "react-lottie-segments",
     "lottie",
     "react",
     "playSegments",
