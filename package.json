@@ -55,5 +55,13 @@
   "main": "dist/index.js",
   "engines": {
     "npm": "^6.13.7"
-  }
+  },
+  "keywords": [
+    "lottie",
+    "react",
+    "playSegments",
+    "goToAndStop",
+    "goToAndPlay",
+    "lottie-web"
+  ]
 }
