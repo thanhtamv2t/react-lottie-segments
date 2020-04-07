@@ -1,9 +1,24 @@
-# Lottie Animation View for React ([Angular](https://github.com/chenqingspring/ng-lottie), [Vue](https://github.com/chenqingspring/vue-lottie))
+# Lottie Animation View for React 
 
-[![npm version](https://badge.fury.io/js/react-lottie.svg)](http://badge.fury.io/js/react-lottie)
+
+This is a fork of [grzegorz-s/react-lottie](https://github.com/grzegorz-s/react-lottie), which is itself forked from [chenqingspring/react-lottie](https://github.com/chenqingspring/react-lottie)
+
+## Differences
+This fork is a work in progress. The goal is to expand the wrapper to handle a larger set of the [lottie-web](https://github.com/airbnb/lottie-web) API. For example:
+
+***
+### setDirection(direction)
+- `direction`: 1 is forward, -1 is reverse.
+
+***
+### playSegments(segments, forceFlag)
+- `segments`: array. Can contain 2 numeric values that will be used as first and last frame of the animation. Or can contain a sequence of arrays each with 2 numeric values.
+- `forceFlag`: boolean. If set to false, it will wait until the current segment is complete. If true, it will update values immediately.
+***
 
 ## Demo
-https://chenqingspring.github.io/react-lottie
+Not currently available for this instance.
+
 
 ## Wapper of bodymovin.js
 
@@ -92,6 +107,9 @@ the object representing the animation settings that will be instantiated by body
 >
 >**rendererSettings** *required* 
 
+**direction** *optional* (default: 1, which is forward)
+> This seems to only effect the first play through if you are looping.
+
 **width** *optional* [default: `100%`]
 
 pixel value for containers width.
@@ -113,6 +131,18 @@ eventListeners=[
   },
 ]
 ```
+
+***
+### goToAndStop(value, isFrame)
+- `value`: numeric value.
+- `isFrame`: defines if first argument is a time based value or a frame based (default false).
+
+***
+### goToAndPlay(value, isFrame)
+- `value`: numeric value.
+- `isFrame`: defines if first argument is a time based value or a frame based (default false).
+
+***
 
 ## Related Projects
 
