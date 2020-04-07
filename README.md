@@ -13,7 +13,7 @@ Newly implemented features:
 - playSegments
 
 ## Demo
-Not currently available for this instance.
+[https://SilverFox70.github.io/react-lottie-segments](https://SilverFox70.github.io/react-lottie-segments)
 
 
 ## Wapper of bodymovin.js
@@ -44,7 +44,7 @@ npm install --save react-lottie-segments
 
 ## Usage
 
-Import pinjump.json.json as animation data
+Import pinjump.json as animation data
 
 ```jsx
 import React from 'react'
@@ -104,7 +104,7 @@ the object representing the animation settings that will be instantiated by body
 >**rendererSettings** *required* 
 
 **direction** *optional* (default: 1, which is forward)
-> This seems to only effect the first play through if you are looping.
+> NOTE: This seems to only effect the first play through if you are looping.
 
 **width** *optional* [default: `100%`]
 
@@ -139,7 +139,7 @@ eventListeners=[
 - `isFrame`: defines if first argument is a time based value or a frame based (default false).
 
 *Example*
-``` javascript
+``` jsx
   const startPoint = {
     value: 80,
     isFrame: true
@@ -181,7 +181,7 @@ eventListeners=[
 - `forceFlag`: boolean. If set to false, it will wait until the current segment is complete. If true, it will update values immediately.
 
 *Example*
-``` javascript
+``` jsx
   const sequence = {
     segments: [0, 80],
     forceFlag: true
@@ -212,7 +212,7 @@ eventListeners=[
       </button>
     </div>
   );
-  
+```
 ***
 
 ## Related Projects
