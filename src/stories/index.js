@@ -13,6 +13,6 @@ storiesOf('Lottie Animation View', module)
   .add('toggle like', () => <ToggleLike />)
   .add('transitions & loops', () => <TransitionLoop />)
   .add('transitions with options', () => <TransitionWithOptions />)
-  .add('with segments', () => <LottieControlSegments />)
+  .add('with playSegments', () => <LottieControlSegments />)
   .add('with goToAndStop', () => <LottieGoToAndStop />)
   .add('with goToAndPlay', () => <LottieGoToAndPlay />);

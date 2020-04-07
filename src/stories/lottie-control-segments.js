@@ -25,8 +25,12 @@ export default class LottieControlSegment extends React.Component {
       margin: '10px auto',
       textAlign: 'center',
     };
-    const { isStopped, isPaused, direction, speed, isDataA, startFrame, endFrame } = this.state;
+    const { isStopped, isPaused, direction, speed, isDataA, startFrame, endFrame, forceFlag } = this.state;
     const defaultOptions = { animationData: (isDataA ? animationDataA : animationDataB) };
+    const segmentOptions = {
+      segments: [startFrame, endFrame],
+      forceFlag: false
+    }
 
     return (<div>
       <Lottie
@@ -36,7 +40,7 @@ export default class LottieControlSegment extends React.Component {
         isStopped={isStopped}
         isPaused={isPaused}
         speed={speed}
-        segments={[startFrame, endFrame]}
+        playSegments={segmentOptions}
         direction={direction}
       />
 
@@ -56,6 +60,17 @@ export default class LottieControlSegment extends React.Component {
           type="text" value={endFrame}
           onChange={e => this.setState({ endFrame: parseInt(e.currentTarget.value, 10) || 0 })}
         />
+        <label htmlFor="forceFlag">
+          <input
+            id="forceFlag"
+            name="forceFlag"
+            type="checkbox"
+            checked={forceFlag}
+            onChange={e => this.setState({ forceFlag: e.currentTarget.checked })}
+
+          />
+          forceFlag
+        </label>
       </div>
     </div>);
   }
