@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.3"></a>
+## [1.4.3](https://github.com/SilverFox70/react-lottie-segments/compare/v1.4.2...v1.4.3) (2020-04-07)
+
+
+### Bug Fixes
+
+* url for repo ([dde2240](https://github.com/SilverFox70/react-lottie-segments/commit/dde2240))
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/SilverFox70/react-lottie/compare/v1.4.1...v1.4.2) (2020-04-07)
 
