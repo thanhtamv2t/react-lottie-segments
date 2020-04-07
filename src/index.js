@@ -35,10 +35,10 @@ export default class Lottie extends React.Component {
     this.anim = lottie.loadAnimation(this.options);
 
     // Immediately handle goTo's if necessary.
-    if (goToAndPlay) {
+    if (this.options.goToAndPlay) {
       this.goToAndPlay();
     } 
-    if (goToAndStop) {
+    if (this.options.goToAndStop) {
       this.goToAndStop();
     }
 
@@ -115,6 +115,7 @@ export default class Lottie extends React.Component {
   }
 
   goToAndPlay() {
+    console.log('#goToAndPlay ', this.props.goToAndPlay);
     const { value, isFrame } = this.props.goToAndPlay;
     this.anim.goToAndPlay(value, isFrame);
   }
