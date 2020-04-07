@@ -39,7 +39,7 @@ Looking for lottie files › https://www.lottiefiles.com/
 
 Install through npm:
 ```
-npm install --save react-lottie
+npm install --save react-lottie-segments
 ```
 
 ## Usage
