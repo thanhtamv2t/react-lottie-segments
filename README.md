@@ -48,7 +48,7 @@ Import pinjump.json as animation data
 
 ```jsx
 import React from 'react'
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie-segments';
 import * as animationData from './pinjump.json'
 
 export default class LottieControl extends React.Component {
@@ -212,6 +212,36 @@ eventListeners=[
       </button>
     </div>
   );
+```
+***
+### getDuration(_callback(num)_)
+- `callback`: accepts a single parameter which is the number of frames in the animation.
+
+*Example*
+``` jsx
+  const getLengthInFrames = (numFrames) => { this.setState({numberOfFrames: numFrames})} ;
+
+  return (<div>
+    <Lottie
+      options={defaultOptions}
+      height={400}
+      width={400}
+      isStopped={isStopped}
+      isPaused={isPaused}
+      getDuration={getLengthInFrames}
+      speed={speed}
+      direction={direction}
+    />
+
+    <p style={centerStyle}>Speed: x{speed}</p>
+    
+    <p style={centerStyle}>Duration: {this.state.numberOfFrames}</p>
+    
+    <button
+      style={centerStyle}
+      onClick={() => this.setState({ isDataA: !isDataA })}
+    >toggle animation</button>
+  </div>);
 ```
 ***
 

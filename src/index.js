@@ -9,6 +9,7 @@ export default class Lottie extends React.Component {
       playSegments,
       goToAndPlay,
       goToAndStop,
+      getDuration,
       eventListeners,
     } = this.props;
 
@@ -34,6 +35,10 @@ export default class Lottie extends React.Component {
     this.options = { ...this.options, ...options };
     this.anim = lottie.loadAnimation(this.options);
 
+    if (getDuration && typeof getDuration === 'function') {
+      this.getDuration(getDuration);
+    }
+
     // Immediately handle goTo's if necessary.
     if (this.options.goToAndPlay) {
       this.goToAndPlay();
@@ -53,6 +58,9 @@ export default class Lottie extends React.Component {
       this.options = { ...this.options, ...nextProps.options };
       this.anim = lottie.loadAnimation(this.options);
       this.registerEvents(nextProps.eventListeners);
+      if (nextProps.getDuration && typeof nextProps.getDuration === 'function') {
+        this.getDuration(nextProps.getDuration);
+      }
     }
   }
 
@@ -115,7 +123,6 @@ export default class Lottie extends React.Component {
   }
 
   goToAndPlay() {
-    console.log('#goToAndPlay ', this.props.goToAndPlay);
     const { value, isFrame } = this.props.goToAndPlay;
     this.anim.goToAndPlay(value, isFrame);
   }
@@ -123,6 +130,10 @@ export default class Lottie extends React.Component {
   goToAndStop() {
     const { value, isFrame } = this.props.goToAndStop;
     this.anim.goToAndStop(value, isFrame);
+  }
+
+  getDuration(getDuration) {
+    getDuration(this.anim.getDuration(true));
   }
 
   destroy() {
@@ -222,6 +233,7 @@ Lottie.propTypes = {
     segments: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number),PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))]),
     forceFlag: PropTypes.bool,
   }),
+  getDuration: PropTypes.bool,
   direction: PropTypes.number,
   ariaRole: PropTypes.string,
   ariaLabel: PropTypes.string,
@@ -246,6 +258,7 @@ Lottie.defaultProps = {
     segments: null,
     forceFlag: false,
   },
+  getDuration: false,
   speed: 1,
   ariaRole: 'button',
   ariaLabel: 'animation',

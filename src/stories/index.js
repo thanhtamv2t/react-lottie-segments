@@ -7,6 +7,7 @@ import TransitionLoop from './TransitionLoop';
 import TransitionWithOptions from './TransitionWithOptions';
 import LottieGoToAndStop from './lottie-goToAndStop';
 import LottieGoToAndPlay from './lottie-goToAndPlay';
+import LottieDuration from './lottie-getDuration';
 
 storiesOf('Lottie Animation View', module)
   .add('with control', () => <LottieControl />)
@@ -15,4 +16,5 @@ storiesOf('Lottie Animation View', module)
   .add('transitions with options', () => <TransitionWithOptions />)
   .add('with playSegments', () => <LottieControlSegments />)
   .add('with goToAndStop', () => <LottieGoToAndStop />)
-  .add('with goToAndPlay', () => <LottieGoToAndPlay />);
+  .add('with goToAndPlay', () => <LottieGoToAndPlay />)
+  .add('get Duration', () => <LottieDuration />);
