@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.9"></a>
+## [1.4.9](https://github.com/SilverFox70/react-lottie-segments/compare/v1.4.8...v1.4.9) (2020-05-13)
+
+
+### Features
+
+* add playSegments to componentDidMount() ([b92078d](https://github.com/SilverFox70/react-lottie-segments/commit/b92078d))
+
+
+
 <a name="1.4.8"></a>
 ## [1.4.8](https://github.com/SilverFox70/react-lottie-segments/compare/v1.4.7...v1.4.8) (2020-05-13)
 
